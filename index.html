@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Passport — Your Verified Work Identity</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2314b8a6'/%3E%3Cpath d='M9 16l5 5 9-10' stroke='%230b1324' stroke-width='3' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+<body>
+
+  <nav class="nav">
+    <a class="brand" href="index.html"><span class="mark"></span> Passport</a>
+    <div class="nav-links">
+      <a href="#how">How it works</a>
+      <a href="#platforms">For platforms</a>
+      <a href="#pricing">Pricing</a>
+      <a class="btn btn-primary btn-sm" href="app/dashboard.html">Build your Passport</a>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div>
+      <span class="pill">● New — portable work identity</span>
+      <h1>Your skills. <span class="accent">Verified once.</span><br/>Trusted on every app you work on.</h1>
+      <p class="lede">
+        Passport is the trust layer gig and trade workers are missing: one verified profile —
+        background check, certifications, job history, ratings — that any marketplace, platform,
+        or client can check in seconds instead of making you start from zero every time.
+      </p>
+      <div class="hero-ctas">
+        <a class="btn btn-primary" href="app/dashboard.html">Build your Passport — it's free</a>
+        <a class="btn btn-ghost" href="#platforms">I run a platform</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><b>$674B</b><span>global gig economy, 2026</span></div>
+        <div class="stat"><b>$15B</b><span>trust &amp; safety market, +15%/yr</span></div>
+        <div class="stat"><b>4–6</b><span>apps the average worker juggles</span></div>
+      </div>
+    </div>
+
+    <div class="mock-card">
+      <div class="mock-top">
+        <span class="avatar"></span>
+        <div>
+          <div class="mock-name">Maria Alvarez</div>
+          <div class="mock-role">Licensed Electrician · 6 yrs</div>
+        </div>
+        <div class="score-ring"><span>92</span></div>
+      </div>
+      <div class="badge-row">
+        <span class="badge verified">✓ ID Verified</span>
+        <span class="badge verified">✓ License Checked</span>
+        <span class="badge verified">✓ 214 Jobs</span>
+        <span class="badge">4.9★ avg</span>
+      </div>
+      <div class="mock-footer">Shared with: TaskBoard, HomePros, ShiftHub — verified once, reused 3×</div>
+    </div>
+  </section>
+
+  <section id="problem">
+    <div class="section-head">
+      <span class="eyebrow">The problem</span>
+      <h2>Reputation shouldn't reset every time you open a new app</h2>
+      <p>Gig and trade work is shifting from one-off local tasks to skill-based, higher-value work —
+         but every platform still makes workers rebuild trust from scratch, and makes hirers
+         re-verify the same person over and over.</p>
+    </div>
+    <div class="grid-3">
+      <div class="card">
+        <div class="icon">⟲</div>
+        <h3>Fragmented reputation</h3>
+        <p>A 4.9★ electrician on one app is a stranger with zero history on the next. Years of proof, locked in silos.</p>
+      </div>
+      <div class="card">
+        <div class="icon">⚠</div>
+        <h3>Trust is expensive to verify</h3>
+        <p>39% of hiring managers now do extra in-person checks because digital credentials aren't trustworthy enough.</p>
+      </div>
+      <div class="card">
+        <div class="icon">⌘</div>
+        <h3>No portable identity layer</h3>
+        <p>Dozens of gig apps exist. None of them own a worker's verified identity — it's the missing infrastructure layer.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="how">
+    <div class="section-head">
+      <span class="eyebrow">How it works</span>
+      <h2>Verify once. Carry it everywhere.</h2>
+    </div>
+    <div class="steps">
+      <div class="step"><div class="num">1</div><h4>Build your profile</h4><p>Add your trade, certifications, ID, and employer or platform history.</p></div>
+      <div class="step"><div class="num">2</div><h4>Get verified</h4><p>Each credential is checked and stamped — ID, license, references, ratings.</p></div>
+      <div class="step"><div class="num">3</div><h4>Earn a Trust Score</h4><p>A single portable score that summarizes verified history, not self-reported claims.</p></div>
+      <div class="step"><div class="num">4</div><h4>Share it anywhere</h4><p>One link or embeddable badge any platform, client, or employer can check instantly.</p></div>
+    </div>
+  </section>
+
+  <section id="platforms">
+    <div class="panel">
+      <div>
+        <span class="eyebrow">For platforms</span>
+        <h2>Stop re-building trust &amp; safety. Rent ours.</h2>
+        <p>Marketplaces and staffing apps plug into the Passport API to pull a worker's verified trust score
+           and credential history instantly at signup — cutting onboarding friction and fraud, without
+           building verification infrastructure in-house.</p>
+        <a class="btn btn-gold" href="app/dashboard.html">See a sample Passport</a>
+      </div>
+      <div class="mock-card">
+        <div class="mock-top">
+          <span class="avatar" style="background:linear-gradient(135deg,#14b8a6,#0b1324)"></span>
+          <div>
+            <div class="mock-name">API Response</div>
+            <div class="mock-role">GET /v1/passport/:id</div>
+          </div>
+        </div>
+        <div class="badge-row">
+          <span class="badge verified">trust_score: 92</span>
+          <span class="badge verified">id_verified: true</span>
+          <span class="badge">jobs_completed: 214</span>
+        </div>
+        <div class="mock-footer">Billed per verification call — see pricing below.</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="pricing">
+    <div class="section-head">
+      <span class="eyebrow">Business model</span>
+      <h2>Two-sided revenue, infrastructure margins</h2>
+      <p>Workers build their Passport for free. Revenue comes from the platforms and businesses that rely on it.</p>
+    </div>
+    <div class="grid-2">
+      <div class="card">
+        <h3>For workers — free, always</h3>
+        <table class="pricing">
+          <tr><th>Core Passport</th><td>Free</td></tr>
+          <tr><th>Verified badge + priority checks</th><td>$4.99/mo</td></tr>
+          <tr><th>Multi-trade credential wallet</th><td>$9.99/mo</td></tr>
+        </table>
+      </div>
+      <div class="card">
+        <h3>For platforms &amp; businesses</h3>
+        <table class="pricing">
+          <tr><th>Verification API call</th><td>$0.15–$0.50 / check</td></tr>
+          <tr><th>Bulk workforce screening</th><td>Volume contract</td></tr>
+          <tr><th>White-label trust widget</th><td>$499+/mo</td></tr>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    Passport — a Verified Work Identity platform. Research-backed concept &amp; working demo.
+    <br/>Build your own sample profile on the <a href="app/dashboard.html" style="color:#14b8a6">demo dashboard</a>.
+  </footer>
+
+</body>
+</html>

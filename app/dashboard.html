@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Build your Passport</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2314b8a6'/%3E%3Cpath d='M9 16l5 5 9-10' stroke='%230b1324' stroke-width='3' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="../assets/css/styles.css" />
+</head>
+<body>
+  <nav class="nav">
+    <a class="brand" href="../index.html"><span class="mark"></span> Passport</a>
+    <div class="nav-links">
+      <a class="back-link" href="../index.html">← Back to home</a>
+    </div>
+  </nav>
+
+  <div class="app-shell">
+    <div class="app-header">
+      <h1>Build your Passport</h1>
+    </div>
+
+    <div class="form-card">
+      <h3>Basic info</h3>
+      <p class="hint">This is a local, private demo — nothing leaves your browser.</p>
+      <label for="fullName">Full name</label>
+      <input type="text" id="fullName" placeholder="e.g. Maria Alvarez" />
+      <label for="trade">Trade / skill category</label>
+      <select id="trade">
+        <option>Electrician</option>
+        <option>Plumber</option>
+        <option>HVAC Technician</option>
+        <option>Carpenter</option>
+        <option>Home Cleaner</option>
+        <option>Delivery / Driver</option>
+        <option>Freelance Developer</option>
+        <option>Designer</option>
+        <option>Other Skilled Trade</option>
+      </select>
+    </div>
+
+    <div class="form-card">
+      <h3>Credentials &amp; verification</h3>
+      <p class="hint">Add each credential, then verify it. Verified items count more toward your Trust Score.</p>
+
+      <div class="cred-list" id="credList"></div>
+
+      <div class="cred-row" style="grid-template-columns: 1fr 1fr auto;">
+        <select id="credType">
+          <option value="id">Government ID</option>
+          <option value="license">Trade License / Certification</option>
+          <option value="reference">Employer Reference</option>
+          <option value="rating">Imported Platform Rating</option>
+          <option value="jobs">Completed Jobs Count</option>
+        </select>
+        <input type="text" id="credValue" placeholder="e.g. NYC Electrician License #4471" />
+        <button class="btn btn-ghost btn-sm" id="addCredBtn">+ Add</button>
+      </div>
+    </div>
+
+    <div class="form-card">
+      <h3>Trust Score</h3>
+      <p class="hint">Calculated live from your verified credentials.</p>
+      <div class="score-panel">
+        <div class="score-big" id="scoreBig">0</div>
+        <div class="meta" id="scoreMeta">Add and verify credentials to build your score.</div>
+      </div>
+      <button class="btn btn-primary btn-block" id="generateBtn" disabled>Generate my shareable Passport →</button>
+      <div id="linkArea" style="display:none; margin-top:14px;">
+        <label>Your shareable Passport link</label>
+        <div class="link-box">
+          <input type="text" id="shareLink" readonly />
+          <button class="btn btn-gold btn-sm" id="copyBtn">Copy</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="../assets/js/dashboard.js"></script>
+</body>
+</html>
