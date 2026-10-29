@@ -103,6 +103,7 @@ export async function saveSettings(fd: FormData) {
     name: str(fd, "name") || "HML Gifting", tagline: str(fd, "tagline"), altTagline: str(fd, "altTagline"),
     heroTitle: str(fd, "heroTitle"), heroSub: str(fd, "heroSub"), heroImage: str(fd, "heroImage"), announcement: str(fd, "announcement"),
     phone: str(fd, "phone"), email: str(fd, "email"), whatsapp: str(fd, "whatsapp"), address: str(fd, "address"),
+    parentLine: str(fd, "parentLine"), legalInfo: str(fd, "legalInfo"),
     freeShipAbove: num(fd, "freeShipAbove"), shippingFee: num(fd, "shippingFee"), giftWrapFee: num(fd, "giftWrapFee"), bulkMin: Math.max(1, num(fd, "bulkMin", 25)),
     gaId: str(fd, "gaId"), pixelId: str(fd, "pixelId"), adsId: str(fd, "adsId"),
   };

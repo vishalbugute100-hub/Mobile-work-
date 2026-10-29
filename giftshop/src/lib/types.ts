@@ -34,6 +34,7 @@ export type Settings = {
   heroTitle: string; heroSub: string; heroImage: string;
   announcement: string;
   phone: string; email: string; whatsapp: string; address: string;
+  parentLine: string; legalInfo: string;
   freeShipAbove: number; shippingFee: number; giftWrapFee: number; bulkMin: number;
   gaId: string; pixelId: string; adsId: string;
 };

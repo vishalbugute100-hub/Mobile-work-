@@ -9,6 +9,7 @@ export function Footer({ s, categories }: { s: Settings; categories: { slug: str
           <p className="font-display text-3xl font-bold">{s.name}</p>
           <p className="mt-2 text-sm italic text-gold-light">{s.tagline}</p>
           <p className="mt-3 text-sm text-ivory/60">{s.altTagline}</p>
+          {s.parentLine && <p className="mt-4 text-xs uppercase tracking-widest text-gold-light">{s.parentLine}</p>}
         </div>
         <div>
           <p className="eyebrow mb-3">Shop</p>
@@ -36,6 +37,7 @@ export function Footer({ s, categories }: { s: Settings; categories: { slug: str
           </ul>
         </div>
       </div>
+      {s.legalInfo && <p className="whitespace-pre-line border-t border-white/10 px-4 py-4 text-center text-xs leading-relaxed text-ivory/50">{s.legalInfo}</p>}
       <p className="border-t border-white/10 py-5 text-center text-xs text-ivory/50">© {new Date().getFullYear()} {s.name}. All rights reserved.</p>
     </footer>
   );

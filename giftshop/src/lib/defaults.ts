@@ -10,6 +10,7 @@ export const DEFAULT_SETTINGS: Settings = {
   heroImage: "",
   announcement: "Corporate & bulk gifting: custom packaging and branding available. Request a quote.",
   phone: "", email: "", whatsapp: "", address: "",
+  parentLine: "", legalInfo: "",
   freeShipAbove: 1499, shippingFee: 99, giftWrapFee: 149, bulkMin: 25,
   gaId: "", pixelId: "", adsId: "",
 };

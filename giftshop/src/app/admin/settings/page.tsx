@@ -24,6 +24,10 @@ export default async function SettingsPage({ searchParams }: { searchParams: Pro
           <div className="grid gap-4 sm:grid-cols-2">{t("phone", "Phone")}{t("email", "Email")}{t("whatsapp", "WhatsApp number", "With country code, e.g. 919876543210")}</div>
           <F label="Address"><textarea name="address" rows={2} className="input" defaultValue={s.address} /></F>
         </section>
+        <section className="card space-y-4 p-6"><h2 className="eyebrow !text-forest">Company & legal (footer)</h2>
+          {t("parentLine", "Parent company line", "e.g. A Harrisons Malayalam Limited enterprise. Use group names/logos only with approval.")}
+          <F label="Legal details" hint="Company name, CIN, GSTIN, FSSAI licence no., registered address. One per line."><textarea name="legalInfo" rows={4} className="input" defaultValue={s.legalInfo} /></F>
+        </section>
         <section className="card space-y-4 p-6"><h2 className="eyebrow !text-forest">Shipping, fees & bulk</h2>
           <div className="grid gap-4 sm:grid-cols-2">{n("freeShipAbove", "Free shipping above (₹)")}{n("shippingFee", "Shipping fee (₹)")}{n("giftWrapFee", "Gift wrap fee (₹)")}{n("bulkMin", "“Bulk” starts at (units)", "Shown in the bulk-enquiry box on product pages.")}</div>
         </section>
