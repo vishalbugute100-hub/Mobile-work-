@@ -58,6 +58,18 @@ export default async function Home() {
         </section>
       )}
 
+      <section className="mx-auto mt-24 max-w-7xl px-4">
+        <div className="grid items-center gap-8 border border-gold/50 bg-white p-8 md:grid-cols-[1.4fr_1fr] md:p-12">
+          <div>
+            <p className="eyebrow">New</p>
+            <h2 className="font-display mt-2 text-4xl font-semibold leading-tight text-forest md:text-5xl">Build your own gift kit</h2>
+            <p className="mt-3 max-w-xl text-muted">Choose the box, pick the teas, coffees and spices, add your own touch and your branding. Send it to us as an enquiry and we will prepare a quote.</p>
+            <Link href="/build-a-kit" className="btn btn-primary mt-6">Start building</Link>
+          </div>
+          <ol className="space-y-2 text-sm">{["Pick a box", "Choose products", "Personalise it", "Get your quote"].map((t, i) => (<li key={t} className="flex items-center gap-3"><span className="font-display text-2xl text-gold">0{i + 1}</span>{t}</li>))}</ol>
+        </div>
+      </section>
+
       <section className="mt-24 bg-forest text-ivory">
         <div className="mx-auto grid max-w-7xl gap-10 px-4 py-20 md:grid-cols-[1.2fr_1fr] md:items-center">
           <div>

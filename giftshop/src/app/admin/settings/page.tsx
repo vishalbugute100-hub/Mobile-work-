@@ -17,6 +17,7 @@ export default async function SettingsPage({ searchParams }: { searchParams: Pro
           <F label="Mode" hint="Enquiry only: no cart or payment; visitors request a quote. Online ordering: cart, checkout and payments (needs Razorpay keys for online payment).">
             <select name="orderMode" className="input" defaultValue={s.orderMode}><option value="enquiry">Enquiry only (request a quote)</option><option value="shop">Online ordering (cart & checkout)</option></select>
           </F>
+          <F label="Box styles for “Build your kit” (one per line)" hint="Format: Name | short description"><textarea name="kitBoxes" rows={3} className="input" defaultValue={s.kitBoxes} /></F>
           <label className="flex items-center gap-2 text-sm"><input type="checkbox" name="showPrices" defaultChecked={s.showPrices} /> Show prices on the website (untick to show “Price on request”)</label>
         </section>
         <section className="card space-y-4 p-6"><h2 className="eyebrow !text-forest">Brand & home page</h2>

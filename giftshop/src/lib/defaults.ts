@@ -13,6 +13,7 @@ export const DEFAULT_SETTINGS: Settings = {
   parentLine: "", legalInfo: "",
   freeShipAbove: 1499, shippingFee: 99, giftWrapFee: 149, bulkMin: 25,
   orderMode: "enquiry", showPrices: true,
+  kitBoxes: "Signature Kraft Box | Natural kraft, eco-friendly\nRigid Magnetic Box | Premium rigid box with magnetic closure\nWooden Keepsake Box | Reusable wooden box with hinged lid",
   gaId: "", pixelId: "", adsId: "",
 };
 

@@ -105,7 +105,7 @@ export async function saveSettings(fd: FormData) {
     phone: str(fd, "phone"), email: str(fd, "email"), whatsapp: str(fd, "whatsapp"), address: str(fd, "address"),
     parentLine: str(fd, "parentLine"), legalInfo: str(fd, "legalInfo"),
     freeShipAbove: num(fd, "freeShipAbove"), shippingFee: num(fd, "shippingFee"), giftWrapFee: num(fd, "giftWrapFee"), bulkMin: Math.max(1, num(fd, "bulkMin", 25)),
-    orderMode: str(fd, "orderMode") === "shop" ? "shop" : "enquiry", showPrices: fd.get("showPrices") === "on",
+    orderMode: str(fd, "orderMode") === "shop" ? "shop" : "enquiry", showPrices: fd.get("showPrices") === "on", kitBoxes: str(fd, "kitBoxes"),
     gaId: str(fd, "gaId"), pixelId: str(fd, "pixelId"), adsId: str(fd, "adsId"),
   };
   await dbPut("settings", "main", s); refresh(); redirect("/admin/settings?saved=1");

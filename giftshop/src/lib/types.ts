@@ -36,7 +36,7 @@ export type Settings = {
   phone: string; email: string; whatsapp: string; address: string;
   parentLine: string; legalInfo: string;
   freeShipAbove: number; shippingFee: number; giftWrapFee: number; bulkMin: number;
-  orderMode: "shop" | "enquiry"; showPrices: boolean;
+  orderMode: "shop" | "enquiry"; showPrices: boolean; kitBoxes: string;
   gaId: string; pixelId: string; adsId: string;
 };
 

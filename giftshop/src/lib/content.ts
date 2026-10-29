@@ -21,7 +21,9 @@ export const readPage = async (id: string): Promise<PageDoc | undefined> =>
   (await dbGet<PageDoc>("page", id)) ?? DEFAULT_PAGES.find((p) => p.id === id);
 
 const opts = { tags: ["content"], revalidate: 300 };
-export const getSettings = unstable_cache(readSettings, ["settings"], opts);
+const cachedSettings = unstable_cache(readSettings, ["settings"], opts);
+// Merge defaults again: cached data can predate a newly added setting.
+export const getSettings = async (): Promise<Settings> => ({ ...DEFAULT_SETTINGS, ...(await cachedSettings()) });
 export const getCategories = unstable_cache(readCategories, ["categories"], opts);
 export const getPage = unstable_cache(readPage, ["page"], opts);
 const allProducts = unstable_cache(async () => (await readProducts()).filter((p) => p.visible), ["products"], opts);

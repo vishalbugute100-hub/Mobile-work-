@@ -8,6 +8,7 @@ export function Header({ name, categories, announcement, showCart }: { name: str
   const [open, setOpen] = useState(false);
   const links = [
     ...categories.map((c) => ({ href: `/shop?category=${c.slug}`, label: c.name })),
+    { href: "/build-a-kit", label: "Build Your Kit" },
     { href: "/enquiry", label: "Bulk Enquiry" },
     { href: "/blog", label: "Gift Guides" },
   ];

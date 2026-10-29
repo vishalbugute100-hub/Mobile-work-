@@ -20,6 +20,7 @@ export function Footer({ s, categories }: { s: Settings; categories: { slug: str
         <div>
           <p className="eyebrow mb-3">Company</p>
           <ul className="space-y-1.5 text-sm text-ivory/75">
+            <li><Link href="/build-a-kit" className="hover:text-gold-light">Build your own gift kit</Link></li>
             <li><Link href="/enquiry" className="hover:text-gold-light">Bulk & corporate enquiry</Link></li>
             <li><Link href="/about" className="hover:text-gold-light">About us</Link></li>
             <li><Link href="/blog" className="hover:text-gold-light">Gift guides</Link></li>
