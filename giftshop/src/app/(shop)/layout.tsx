@@ -15,7 +15,7 @@ export default async function ShopLayout({ children }: { children: React.ReactNo
   return (
     <>
       <CartProvider cfg={{ freeShipAbove: s.freeShipAbove, shippingFee: s.shippingFee, giftWrapFee: s.giftWrapFee }}>
-        <Header name={s.name} categories={cats} announcement={s.announcement} showCart={s.orderMode === "shop"} />
+        <Header name={s.name} categories={cats.map((c) => ({ slug: c.slug, name: c.name }))} announcement={s.announcement} showCart={s.orderMode === "shop"} />
         <main>{children}</main>
         <Footer s={s} categories={cats} />
       </CartProvider>
