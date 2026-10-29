@@ -22,7 +22,7 @@ export default async function Dashboard() {
       <div className="card mt-8 p-6">
         <h2 className="eyebrow !text-forest">Setup checklist</h2>
         <ul className="mt-2 divide-y divide-line text-sm">
-          {check(usingDb(), "Database connected", "Add DATABASE_URL in Vercel (Neon/Postgres). Until then, edits are temporary and will be lost.")}
+          {check(usingDb(), "Database connected (Neon)", "Optional locally: data is saved in the .data folder on this machine. For a live site, add DATABASE_URL.")}
           {settings.orderMode === "shop" ? check(!!process.env.RAZORPAY_KEY_ID && !!process.env.RAZORPAY_KEY_SECRET, "Online payments (Razorpay)", "Add RAZORPAY_KEY_ID and RAZORPAY_KEY_SECRET. Until then, checkout runs in demo mode.") : check(true, "Enquiry-only mode: no payment setup needed", "")}
           {check(!!process.env.RESEND_API_KEY && !!process.env.NOTIFY_EMAIL, "E-mail alerts for new orders & enquiries", "Optional: add RESEND_API_KEY and NOTIFY_EMAIL in Vercel.")}
           {check(!!process.env.ADMIN_PASSWORD, "Admin password set", "Set ADMIN_PASSWORD in Vercel to a strong password.")}

@@ -7,7 +7,9 @@ Storefront, bulk/corporate enquiry system, cart & checkout (Razorpay / COD), ord
 npm install
 npm run dev     # http://localhost:3000  ·  admin: /admin  (dev password: admin123)
 ```
-With no env vars it runs in **demo mode** (simulated payments, temporary storage).
+With no env vars it runs in **demo mode**: payments are simulated and your data is saved in the `.data` folder on your machine (persistent; ignored by git).
+Optional: put `DATABASE_URL=<neon pooled url>` and `ADMIN_PASSWORD=...` in `giftshop/.env.local` to use a Neon database even locally.
+Move everything to a new site any time: Admin → Backup & move → download, then restore on the new site.
 
 ## Deploy (Vercel)
 1. Import the repo, **Root Directory = `giftshop`**.

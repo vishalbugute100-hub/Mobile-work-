@@ -8,7 +8,7 @@ export const dynamic = "force-dynamic";
 
 const NAV: [string, string][] = [
   ["/admin", "Dashboard"], ["/admin/orders", "Orders"], ["/admin/enquiries", "Enquiries & quotes"], ["/admin/products", "Products"],
-  ["/admin/categories", "Categories"], ["/admin/coupons", "Coupons"], ["/admin/guides", "Gift guides"], ["/admin/pages", "About & policies"], ["/admin/settings", "Site settings"],
+  ["/admin/categories", "Categories"], ["/admin/coupons", "Coupons"], ["/admin/guides", "Gift guides"], ["/admin/pages", "About & policies"], ["/admin/settings", "Site settings"], ["/admin/backup", "Backup & move"],
 ];
 
 export default async function AdminLayout({ children }: { children: React.ReactNode }) {

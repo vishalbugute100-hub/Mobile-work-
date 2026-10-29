@@ -1,7 +1,7 @@
 // Order persistence. Uses Postgres when DATABASE_URL is set; otherwise a temp JSON file (demo only, not durable).
 import { Pool } from "pg";
+import { dataDir } from "./db";
 import { promises as fs } from "fs";
-import os from "os";
 import path from "path";
 import type { Totals } from "./pricing";
 
@@ -40,10 +40,10 @@ function pool() {
   return g._pool;
 }
 
-const FILE = path.join(os.tmpdir(), "giftshop-orders.json");
+const orderFile = async () => path.join(await dataDir(), "orders.json");
 async function readFile(): Promise<Order[]> {
   try {
-    return JSON.parse(await fs.readFile(FILE, "utf8"));
+    return JSON.parse(await fs.readFile(await orderFile(), "utf8"));
   } catch {
     return [];
   }
@@ -60,7 +60,7 @@ export async function saveOrder(o: Order) {
   } else {
     const all = (await readFile()).filter((x) => x.id !== o.id);
     all.unshift(o);
-    await fs.writeFile(FILE, JSON.stringify(all));
+    await fs.writeFile(await orderFile(), JSON.stringify(all));
   }
 }
 
@@ -89,4 +89,4 @@ export async function updateOrder(id: string, patch: (o: Order) => Order) {
   if (o) await saveOrder(patch(o));
 }
 
-export const storageMode = () => (useDb() ? "postgres" : "temp-file (demo)");
+export const storageMode = () => (useDb() ? "postgres" : "local files");
