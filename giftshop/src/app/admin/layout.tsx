@@ -13,7 +13,12 @@ const NAV: [string, string][] = [
 
 export default async function AdminLayout({ children }: { children: React.ReactNode }) {
   if (!adminPassword())
-    return <div className="mx-auto max-w-md p-16 text-center">Admin is switched off. Set the <code>ADMIN_PASSWORD</code> environment variable in Vercel to enable it.</div>;
+    return <div className="mx-auto max-w-lg p-16 text-center">
+        <p className="font-display text-3xl font-semibold text-forest">Admin is switched off</p>
+        <p className="mt-3 text-muted">Choose an admin password to turn it on.</p>
+        <p className="mt-4 text-left text-sm"><b>On your computer:</b> create a file named <code>.env.local</code> in the <code>giftshop</code> folder containing <code>ADMIN_PASSWORD=YourPassword</code>, then restart the site.</p>
+        <p className="mt-2 text-left text-sm"><b>On a live host (Render, Vercel…):</b> add an environment variable named <code>ADMIN_PASSWORD</code> in the host&apos;s settings and redeploy.</p>
+      </div>;
   if (!(await isAdmin()))
     return (
       <form action={login} className="card mx-auto my-24 max-w-sm space-y-4 p-8">
