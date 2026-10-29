@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { createHmac, timingSafeEqual } from "crypto";
 import { getOrder, saveOrder } from "@/lib/store";
+import { esc, notifyOwner } from "@/lib/notify";
 
 export async function POST(req: Request) {
   const b = await req.json().catch(() => ({}));
@@ -16,5 +17,6 @@ export async function POST(req: Request) {
   order.payment = { ...order.payment, status: "paid", paymentId: b.razorpay_payment_id };
   order.status = "confirmed";
   await saveOrder(order);
+  await notifyOwner(`Paid order ${order.id} (₹${order.totals.total})`, `<p>Order ${esc(order.id)} paid by ${esc(order.customer.name)}, ${esc(order.customer.phone)}.</p>`);
   return NextResponse.json({ ok: true });
 }

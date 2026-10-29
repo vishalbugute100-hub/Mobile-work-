@@ -1,29 +1,30 @@
-# Giftora – gifting e-commerce store (Next.js)
+# HML Gifting – premium tea, coffee & spice gifting store (Next.js)
 
-Storefront, cart, checkout (Razorpay / COD), orders, admin, SEO and ad-feed plumbing in one app.
+Storefront, bulk/corporate enquiry system, cart & checkout (Razorpay / COD), orders and a no-code admin panel.
 
 ## Run locally
 ```bash
 npm install
-npm run dev      # http://localhost:3000   (admin: /admin, dev password: admin123)
+npm run dev     # http://localhost:3000  ·  admin: /admin  (dev password: admin123)
 ```
-With no env vars it runs in **demo mode**: payments are simulated, orders go to a temp file.
+With no env vars it runs in **demo mode** (simulated payments, temporary storage).
 
-## Go live (Vercel)
-1. Import the GitHub repo in Vercel, set **Root Directory = `giftshop`**.
-2. Add a Postgres DB (Vercel Marketplace → Neon, or Supabase) and set `DATABASE_URL`. The `orders` table is created automatically.
-3. Set the env vars from `.env.example`: `RAZORPAY_KEY_ID`, `RAZORPAY_KEY_SECRET`, `ADMIN_PASSWORD`, `NEXT_PUBLIC_SITE_URL`, `NEXT_PUBLIC_STORE_NAME`.
+## Deploy (Vercel)
+1. Import the repo, **Root Directory = `giftshop`**.
+2. Add a Postgres database (Vercel Marketplace → Neon) so `DATABASE_URL` is set. Tables are created automatically and starter content is loaded on first visit.
+3. Set the variables in `.env.example` (at least `ADMIN_PASSWORD`, `DATABASE_URL`, `NEXT_PUBLIC_SITE_URL`; add Razorpay keys to take payments).
 4. Add your domain in Vercel.
 
-## Your content
-- Products, categories, occasions: `src/lib/products.ts` (add an `image` URL per product).
-- Gift guides (SEO): `src/lib/blog.ts`. Coupons: `src/lib/pricing.ts`. Shipping/wrap fees: `src/lib/site.ts`.
-- Policies text in `src/app/policies/page.tsx` is a template; have it reviewed.
+## Running the site yourself: /admin
+Products (photos, price, box options, tags, stock, hide/show) · Categories · Orders (status, courier, AWB) ·
+Enquiries & quotes (status, quote, WhatsApp/email reply) · Coupons · Gift guides (SEO articles) ·
+About & policies text · Site settings (brand, taglines, hero text/photo, announcement bar, contact, fees, Google Analytics / Ads / Meta Pixel IDs).
+The dashboard shows a setup checklist.
 
-## Marketing (SEO + SEM)
-- SEO: server-rendered pages, per-page metadata/canonicals, Product/Breadcrumb/Article JSON-LD, `/sitemap.xml`, `/robots.txt`.
-- Google Merchant Center / Meta Catalog feed: `/feeds/google.xml` (needs real product images).
-- Tracking: set `NEXT_PUBLIC_GA_ID`, `NEXT_PUBLIC_META_PIXEL_ID`, `NEXT_PUBLIC_GOOGLE_ADS_ID`; add_to_cart / begin_checkout / purchase events fire automatically.
+## Marketing
+SEO: server-rendered pages, canonicals, Product/Breadcrumb/Article JSON-LD, `/sitemap.xml`, `/robots.txt`.
+Google Merchant Center / Meta catalog feed: `/feeds/google.xml` (products with photos only).
+Conversion events (add_to_cart, begin_checkout, purchase, generate_lead) fire automatically once IDs are saved in Site settings.
 
-## Not yet included
-Courier API (Shiprocket/Delhivery) for live rates and label creation (admin records AWB manually), email/WhatsApp notifications, customer accounts, product admin UI (catalog is a code file), GST invoices.
+## Not included yet
+Live courier API (Shiprocket etc.; admin records AWB manually), GST invoices, customer accounts, multi-user admin roles.

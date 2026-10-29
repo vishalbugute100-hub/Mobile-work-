@@ -13,7 +13,7 @@ export type Order = {
   status: OrderStatus;
   payment: { method: "online" | "cod" | "demo"; status: "unpaid" | "paid" | "cod"; razorpayOrderId?: string; paymentId?: string };
   customer: { name: string; email: string; phone: string; address: string; city: string; state: string; pincode: string };
-  lines: { slug: string; name: string; qty: number; price: number; text?: string }[];
+  lines: { slug: string; name: string; qty: number; price: number; text?: string; packaging?: string }[];
   giftWrap: boolean;
   giftMessage?: string;
   deliveryDate?: string;
