@@ -1,11 +1,12 @@
 import Link from "next/link";
 import type { Product } from "@/lib/types";
-import { discountPct } from "@/lib/content";
+import { discountPct, getSettings } from "@/lib/content";
 import { inr } from "@/lib/format";
 import { Art } from "./Art";
 
-export function ProductCard({ p }: { p: Product }) {
-  const off = discountPct(p);
+export async function ProductCard({ p }: { p: Product }) {
+  const { showPrices } = await getSettings();
+  const off = showPrices ? discountPct(p) : 0;
   return (
     <Link href={`/product/${p.slug}`} className="group block">
       <div className="card relative aspect-square overflow-hidden">
@@ -16,10 +17,12 @@ export function ProductCard({ p }: { p: Product }) {
       <div className="pt-3">
         {p.size && <p className="eyebrow !text-[10px]">{p.size}</p>}
         <h3 className="font-display text-xl font-semibold leading-snug text-forest group-hover:text-gold">{p.name}</h3>
-        <p className="mt-1 flex items-baseline gap-2 text-sm">
-          <span className="font-semibold">{inr(p.price)}</span>
-          {p.mrp > p.price && <span className="text-muted line-through">{inr(p.mrp)}</span>}
-        </p>
+        {showPrices ? (
+          <p className="mt-1 flex items-baseline gap-2 text-sm">
+            <span className="font-semibold">{inr(p.price)}</span>
+            {p.mrp > p.price && <span className="text-muted line-through">{inr(p.mrp)}</span>}
+          </p>
+        ) : <p className="mt-1 text-sm text-muted">Price on request</p>}
       </div>
     </Link>
   );

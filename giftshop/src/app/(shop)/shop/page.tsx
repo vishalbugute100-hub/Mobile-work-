@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { filterProducts, getCategories, getProducts } from "@/lib/content";
+import { filterProducts, getCategories, getProducts, getSettings } from "@/lib/content";
 import { ProductCard } from "@/components/ProductCard";
 
 type SP = Promise<Record<string, string | undefined>>;
@@ -20,7 +20,7 @@ export async function generateMetadata({ searchParams }: { searchParams: SP }): 
 
 export default async function Shop({ searchParams }: { searchParams: SP }) {
   const sp = await searchParams;
-  const [all, cats] = await Promise.all([getProducts(), getCategories()]);
+  const [all, cats, settings] = await Promise.all([getProducts(), getCategories(), getSettings()]);
   const list = filterProducts(all, { q: sp.q, category: sp.category, tag: sp.tag, max: sp.max ? Number(sp.max) : undefined, sort: sp.sort });
   const tags = [...new Set(all.flatMap((p) => p.tags))];
   const cat = cats.find((c) => c.slug === sp.category);
@@ -48,8 +48,8 @@ export default async function Shop({ searchParams }: { searchParams: SP }) {
         <aside className="h-fit space-y-6">
           {group("Collection", "category", cats)}
           {tags.length > 0 && group("Occasion", "tag", tags.map((t) => ({ slug: t, name: t.replace(/-/g, " ") })))}
-          {group("Budget", "max", [{ slug: "1000", name: "Under ₹1,000" }, { slug: "2500", name: "Under ₹2,500" }, { slug: "5000", name: "Under ₹5,000" }])}
-          {group("Sort", "sort", [{ slug: "price-asc", name: "Price: low to high" }, { slug: "price-desc", name: "Price: high to low" }])}
+          {settings.showPrices && group("Budget", "max", [{ slug: "1000", name: "Under ₹1,000" }, { slug: "2500", name: "Under ₹2,500" }, { slug: "5000", name: "Under ₹5,000" }])}
+          {settings.showPrices && group("Sort", "sort", [{ slug: "price-asc", name: "Price: low to high" }, { slug: "price-desc", name: "Price: high to low" }])}
           {Object.keys(sp).length > 0 && <Link href="/shop" className="block text-sm font-semibold text-gold">Clear filters</Link>}
           <div className="border border-gold/50 bg-white p-4 text-sm">
             <p className="font-semibold text-forest">Need bulk or custom?</p>

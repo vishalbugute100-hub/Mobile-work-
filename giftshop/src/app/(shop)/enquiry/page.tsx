@@ -42,7 +42,7 @@ export default async function Enquiry({ searchParams }: { searchParams: Promise<
           </div>
         )}
       </div>
-      <EnquiryForm type={sp.type ?? "Custom request"} product={sp.product ?? ""} slug={sp.slug ?? ""} />
+      <EnquiryForm type={sp.type ?? "Custom request"} product={sp.product ?? ""} slug={sp.slug ?? ""} qty={sp.qty ?? ""} note={sp.note ?? ""} />
     </div>
   );
 }

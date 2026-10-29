@@ -11,6 +11,7 @@ export async function POST(req: Request) {
   const b = await req.json().catch(() => null);
   if (!b) return NextResponse.json({ error: "Invalid request" }, { status: 400 });
 
+  if ((await getSettings()).orderMode !== "shop") return NextResponse.json({ error: "Online ordering is not enabled. Please send an enquiry." }, { status: 403 });
   const c = b.customer ?? {};
   const customer = { name: s(c.name, 80), email: s(c.email, 120), phone: s(c.phone, 15), address: s(c.address, 300), city: s(c.city, 60), state: s(c.state, 60), pincode: s(c.pincode, 6) };
   if (!customer.name || !/^\S+@\S+\.\S+$/.test(customer.email) || !/^[6-9]\d{9}$/.test(customer.phone) || !customer.address || !customer.city || !customer.state || !/^[1-9]\d{5}$/.test(customer.pincode))

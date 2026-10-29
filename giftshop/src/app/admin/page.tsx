@@ -1,12 +1,12 @@
 import Link from "next/link";
 import { listOrders } from "@/lib/store";
 import { dbList, usingDb } from "@/lib/db";
-import { readProducts } from "@/lib/content";
+import { readProducts, readSettings } from "@/lib/content";
 import { inr } from "@/lib/format";
 import type { Enquiry } from "@/lib/types";
 
 export default async function Dashboard() {
-  const [orders, enquiries, products] = await Promise.all([listOrders(), dbList<Enquiry>("enquiry"), readProducts()]);
+  const [orders, enquiries, products, settings] = await Promise.all([listOrders(), dbList<Enquiry>("enquiry"), readProducts(), readSettings()]);
   const paid = orders.filter((o) => o.status !== "cancelled" && o.status !== "pending");
   const stat = (n: string | number, l: string, href: string) => (<Link href={href} className="card block p-5 hover:border-gold"><p className="font-display text-4xl font-semibold text-forest">{n}</p><p className="text-xs uppercase tracking-widest text-muted">{l}</p></Link>);
   const check = (ok: boolean, label: string, fix: string) => (<li className="flex gap-3 py-2"><span className={ok ? "text-forest" : "text-alert"}>{ok ? "✓" : "✕"}</span><span><b>{label}</b>{!ok && <span className="block text-muted">{fix}</span>}</span></li>);
@@ -23,7 +23,7 @@ export default async function Dashboard() {
         <h2 className="eyebrow !text-forest">Setup checklist</h2>
         <ul className="mt-2 divide-y divide-line text-sm">
           {check(usingDb(), "Database connected", "Add DATABASE_URL in Vercel (Neon/Postgres). Until then, edits are temporary and will be lost.")}
-          {check(!!process.env.RAZORPAY_KEY_ID && !!process.env.RAZORPAY_KEY_SECRET, "Online payments (Razorpay)", "Add RAZORPAY_KEY_ID and RAZORPAY_KEY_SECRET in Vercel. Until then, checkout runs in demo mode.")}
+          {settings.orderMode === "shop" ? check(!!process.env.RAZORPAY_KEY_ID && !!process.env.RAZORPAY_KEY_SECRET, "Online payments (Razorpay)", "Add RAZORPAY_KEY_ID and RAZORPAY_KEY_SECRET. Until then, checkout runs in demo mode.") : check(true, "Enquiry-only mode: no payment setup needed", "")}
           {check(!!process.env.RESEND_API_KEY && !!process.env.NOTIFY_EMAIL, "E-mail alerts for new orders & enquiries", "Optional: add RESEND_API_KEY and NOTIFY_EMAIL in Vercel.")}
           {check(!!process.env.ADMIN_PASSWORD, "Admin password set", "Set ADMIN_PASSWORD in Vercel to a strong password.")}
           {check(products.some((p) => p.images.length), "Product photos added", "Open Products and upload real photos (needed for Google/Meta feeds too).")}

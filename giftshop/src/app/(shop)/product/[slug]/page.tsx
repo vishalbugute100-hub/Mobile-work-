@@ -7,6 +7,7 @@ import { siteUrl } from "@/lib/site";
 import { Art } from "@/components/Art";
 import { ProductCard } from "@/components/ProductCard";
 import { AddToCart } from "@/components/AddToCart";
+import { EnquireNow } from "@/components/EnquireNow";
 import { PincodeCheck } from "@/components/PincodeCheck";
 import { BulkBox } from "@/components/BulkBox";
 
@@ -32,11 +33,12 @@ export default async function ProductPage({ params }: { params: P }) {
   const related = all.filter((x) => x.slug !== p.slug && (x.category === p.category || x.tags.some((t) => p.tags.includes(t)))).slice(0, 4);
   const abs = (u: string) => (u.startsWith("http") ? u : siteUrl() + u);
   const off = discountPct(p);
+  const shop = s.orderMode === "shop";
 
   const ld = {
     "@context": "https://schema.org", "@type": "Product", name: p.name, description: p.description, sku: p.slug, category: cat?.name,
     image: p.images.length ? p.images.map(abs) : undefined, brand: { "@type": "Brand", name: s.name },
-    offers: { "@type": "Offer", url: `${siteUrl()}/product/${p.slug}`, priceCurrency: "INR", price: p.price, availability: p.stock > 0 ? "https://schema.org/InStock" : "https://schema.org/OutOfStock", itemCondition: "https://schema.org/NewCondition" },
+    offers: !s.showPrices ? undefined : { "@type": "Offer", url: `${siteUrl()}/product/${p.slug}`, priceCurrency: "INR", price: p.price, availability: p.stock > 0 ? "https://schema.org/InStock" : "https://schema.org/OutOfStock", itemCondition: "https://schema.org/NewCondition" },
   };
   const crumbs = { "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [
     { "@type": "ListItem", position: 1, name: "Home", item: siteUrl() },
@@ -62,14 +64,20 @@ export default async function ProductPage({ params }: { params: P }) {
           {p.size && <p className="eyebrow">{p.size}</p>}
           <h1 className="font-display mt-1 text-5xl font-semibold leading-tight text-forest">{p.name}</h1>
           <p className="mt-3 text-muted">{p.short}</p>
-          <p className="mt-5 flex items-baseline gap-3">
+          {s.showPrices ? <><p className="mt-5 flex items-baseline gap-3">
             <span className="text-3xl font-semibold">{inr(p.price)}</span>
             {p.mrp > p.price && <><span className="text-lg text-muted line-through">{inr(p.mrp)}</span><span className="bg-forest px-2 py-0.5 text-xs font-semibold uppercase tracking-wider text-ivory">{off}% off</span></>}
           </p>
-          <p className="text-xs text-muted">Inclusive of all taxes · base price with the standard box</p>
-          <AddToCart p={{ slug: p.slug, name: p.name, price: p.price, emoji: p.emoji, hue: p.hue, image: p.images[0], packaging: p.packaging, personaliseLabel: p.personaliseLabel, personaliseMax: p.personaliseMax, inStock: p.stock > 0 }} />
-          <BulkBox slug={p.slug} name={p.name} bulkMin={p.bulkMin || s.bulkMin} />
-          <PincodeCheck />
+          <p className="text-xs text-muted">{shop ? "Inclusive of all taxes · base price with the standard box" : "Indicative price per unit. Final quote depends on quantity and packaging."}</p></> : <p className="mt-5 text-2xl font-semibold text-forest">Price on request</p>}
+          {shop ? (
+            <>
+              <AddToCart p={{ slug: p.slug, name: p.name, price: p.price, emoji: p.emoji, hue: p.hue, image: p.images[0], packaging: p.packaging, personaliseLabel: p.personaliseLabel, personaliseMax: p.personaliseMax, inStock: p.stock > 0 }} />
+              <BulkBox slug={p.slug} name={p.name} bulkMin={p.bulkMin || s.bulkMin} />
+              <PincodeCheck />
+            </>
+          ) : (
+            <EnquireNow name={p.name} slug={p.slug} price={p.price} showPrice={s.showPrices} packaging={p.packaging} personaliseLabel={p.personaliseLabel} personaliseMax={p.personaliseMax} />
+          )}
           <div className="mt-10">
             <h2 className="eyebrow !text-forest">About this gift</h2>
             <p className="mt-3 leading-relaxed text-muted">{p.description}</p>

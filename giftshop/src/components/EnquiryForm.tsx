@@ -5,9 +5,9 @@ import { track } from "@/lib/track";
 
 const TYPES = ["Bulk order", "Corporate gifting", "Festive gifting", "Wedding / event favours", "Custom request"];
 
-export function EnquiryForm({ type, product, slug }: { type: string; product: string; slug: string }) {
+export function EnquiryForm({ type, product, slug, qty = "", note = "" }: { type: string; product: string; slug: string; qty?: string; note?: string }) {
   const r = useRouter();
-  const [f, setF] = useState({ type: TYPES.includes(type) ? type : type || "Custom request", name: "", company: "", email: "", phone: "", city: "", product, productSlug: slug, quantity: "", budget: "", neededBy: "", branding: false, message: "", website: "" });
+  const [f, setF] = useState({ type: TYPES.includes(type) ? type : type || "Custom request", name: "", company: "", email: "", phone: "", city: "", product, productSlug: slug, quantity: qty, budget: "", neededBy: "", branding: false, message: note, website: "" });
   const [busy, setBusy] = useState(false);
   const [err, setErr] = useState("");
   const set = (k: keyof typeof f) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => setF({ ...f, [k]: e.target.type === "checkbox" ? (e.target as HTMLInputElement).checked : e.target.value });

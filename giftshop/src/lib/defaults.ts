@@ -12,6 +12,7 @@ export const DEFAULT_SETTINGS: Settings = {
   phone: "", email: "", whatsapp: "", address: "",
   parentLine: "", legalInfo: "",
   freeShipAbove: 1499, shippingFee: 99, giftWrapFee: 149, bulkMin: 25,
+  orderMode: "enquiry", showPrices: true,
   gaId: "", pixelId: "", adsId: "",
 };
 

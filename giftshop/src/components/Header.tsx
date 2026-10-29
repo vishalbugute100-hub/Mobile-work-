@@ -3,7 +3,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { useCart } from "@/lib/cart";
 
-export function Header({ name, categories, announcement }: { name: string; categories: { slug: string; name: string }[]; announcement: string }) {
+export function Header({ name, categories, announcement, showCart }: { name: string; categories: { slug: string; name: string }[]; announcement: string; showCart: boolean }) {
   const { count, ready } = useCart();
   const [open, setOpen] = useState(false);
   const links = [
@@ -23,9 +23,13 @@ export function Header({ name, categories, announcement }: { name: string; categ
           {links.map((l) => (<Link key={l.href} href={l.href} className="text-forest hover:text-gold">{l.label}</Link>))}
         </nav>
         <form action="/shop" className="ml-auto hidden max-w-[200px] flex-1 xl:block"><input name="q" className="input !py-1.5 text-sm" placeholder="Search" aria-label="Search" /></form>
-        <Link href="/cart" className="ml-auto text-[13px] font-semibold uppercase tracking-[0.12em] text-forest xl:ml-0" aria-label="Cart">
-          Cart{ready && count > 0 && <span className="ml-1.5 bg-gold px-1.5 py-0.5 text-[11px] text-white">{count}</span>}
-        </Link>
+        {showCart ? (
+          <Link href="/cart" className="ml-auto text-[13px] font-semibold uppercase tracking-[0.12em] text-forest xl:ml-0" aria-label="Cart">
+            Cart{ready && count > 0 && <span className="ml-1.5 bg-gold px-1.5 py-0.5 text-[11px] text-white">{count}</span>}
+          </Link>
+        ) : (
+          <Link href="/enquiry" className="btn btn-primary ml-auto !px-4 !py-2 xl:ml-0">Get a quote</Link>
+        )}
       </div>
       {open && (
         <div className="border-t border-line bg-white px-4 py-4 lg:hidden">
