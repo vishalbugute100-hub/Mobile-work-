@@ -1,0 +1,23 @@
+# Render Blueprint: New > Blueprint > pick this repo. Fill the secret values when prompted.
+services:
+  - type: web
+    name: hml-gifting
+    runtime: node
+    rootDir: giftshop
+    plan: free            # change to "starter" for always-on
+    buildCommand: npm ci && npm run build
+    startCommand: npm start
+    healthCheckPath: /
+    envVars:
+      - key: NODE_VERSION
+        value: 22
+      - key: ADMIN_PASSWORD
+        sync: false
+      - key: DATABASE_URL        # Neon pooled connection string
+        sync: false
+      - key: NEXT_PUBLIC_SITE_URL
+        sync: false
+      - key: RAZORPAY_KEY_ID
+        sync: false
+      - key: RAZORPAY_KEY_SECRET
+        sync: false

@@ -28,3 +28,8 @@ Conversion events (add_to_cart, begin_checkout, purchase, generate_lead) fire au
 
 ## Not included yet
 Live courier API (Shiprocket etc.; admin records AWB manually), GST invoices, customer accounts, multi-user admin roles.
+
+## Other hosting (not Vercel)
+- **Render:** New → Blueprint → select this repo (uses `render.yaml`). Set the secret env vars. Free plan sleeps when idle; use `starter` for a live store.
+- **Docker / Cloud Run / Fly / Railway / VPS:** `cd giftshop && docker build -t hml-gifting .` then run with the env vars from `.env.example` (listens on port 8080).
+- Use the Neon **pooled** connection string as `DATABASE_URL` on any host.
